@@ -1,24 +1,14 @@
 # どこでも俳句
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### 概要
 
-Things you may want to cover:
+ユーザー同士で俳句を評価しあうレビューサイトです。
 
-* Ruby version
+### サイトの説明
 
-* System dependencies
+ユーザー同士で作った俳句について語り合えるようにレビューだけでなくコメントで話せるようにしています。
+自分の作った俳句を星でいっぱになるよう目指しましょう
 
-* Configuration
+### 開発環境
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Cloud9
