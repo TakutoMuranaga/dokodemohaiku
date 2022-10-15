@@ -18,8 +18,24 @@
             <td><%= link_to 'Edit', edit_poem_path(@poem), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @poem, method: :delete, class: "btn btn-sm btn-danger"%></td>
           <% end %>
+         </div>
         </tr>
       </table>
+      <div>
+        <% if @poem.favorited_by?(current_user) %>
+            <p>
+              <%= link_to poem_favorites_path(@poem), method: :delete do %>
+                ♥<%= @poem.favorites.count %> いいね
+              <% end %>
+            </p>
+            <% else %>
+            <p>
+              <%= link_to poem_favorites_path(@poem), method: :post do %>
+                ♡<%= @poem.favorites.count %> いいね
+              <% end %>
+            </p>
+          <% end %>
+      </div>
       <div>
         <p>コメント件数：<%= @poem.poem_comments.count %></p>
         <% @poem.poem_comments.each do |poem_comment| %>

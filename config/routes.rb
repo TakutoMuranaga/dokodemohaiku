@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :edit, :update, :destroy, :show]
     resources :poems, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :poem_comments, only: [:create, :destroy]
+      resource :favorites, only: [:create, :destroy]
     end 
     devise_scope :user do
       post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
