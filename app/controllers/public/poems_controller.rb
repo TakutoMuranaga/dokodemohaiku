@@ -5,6 +5,8 @@ class Public::PoemsController < ApplicationController
   end
 
   def show
+    @poem = Poem.find(params[:id])
+    @user = @poem.user
   end
 
   def index
@@ -25,7 +27,7 @@ class Public::PoemsController < ApplicationController
   def update
   end
 
-  def destooy
+  def destroy
     @poem = Poem.find(params[:id])
     @poem.destroy
     redirect_to poems_path

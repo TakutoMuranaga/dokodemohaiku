@@ -10,7 +10,7 @@
       <td>
         <%= image_tag poem.user.get_profile_image(50,50) %>
       </td>
-      <td><%= poem.poem_start %></td>
+      <td><%= link_to poem.poem_start,poem %></td>
       <td><%= poem.poem_middle %></td>
       <td><%= poem.poem_end %></td>
     </tr>
