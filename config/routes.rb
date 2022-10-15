@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'homes#top'
     resources :users, only: [:index, :edit, :update, :destroy, :show]
-    resources :poems, only: [:index,:show,:edit,:create,:destroy,:update]
+    resources :poems, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
+      resources :poem_comments, only: [:create, :destroy]
+    end  
   end
 end
