@@ -7,6 +7,7 @@ class Public::PoemsController < ApplicationController
   def show
     @poem = Poem.find(params[:id])
     @user = @poem.user
+    @poem_comment = PoemComment.new
   end
 
   def index
@@ -22,9 +23,16 @@ class Public::PoemsController < ApplicationController
   end
 
   def edit
+    @poem = Poem.find(params[:id])
   end
 
   def update
+    @poem = Poem.find(params[:id])
+    if @poem.update(poems_params)
+      redirect_to poem_path(@poem), notice: "You have updated book successfully."
+    else
+      render "edit"
+    end
   end
 
   def destroy

@@ -19,7 +19,24 @@
             <td><%= link_to 'Destroy', @poem, method: :delete, class: "btn btn-sm btn-danger"%></td>
           <% end %>
         </tr>
-      </table>  
-    </div>  
+      </table>
+      <div>
+        <p>コメント件数：<%= @poem.poem_comments.count %></p>
+        <% @poem.poem_comments.each do |poem_comment| %>
+          <p><%= image_tag poem_comment.user.get_profile_image(100,100) %></p>
+          <%= poem_comment.user.name %>
+          <%= poem_comment.created_at.strftime('%Y/%m/%d') %><%= poem_comment.comment %>
+          <% if poem_comment.user == current_user %>
+            <%= link_to "削除", poem_poem_comment_path(poem_comment.poem, poem_comment), method: :delete %>
+          <% end %>
+        <% end %>
+      </div>
+      <div>
+        <%= form_with model: [@poem, @poem_comment] do |f| %>
+          <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+          <%= f.submit "送信する" %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
