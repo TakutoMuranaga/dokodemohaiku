@@ -1,0 +1,19 @@
+<table class='table table-hover table-inverse'>
+  <tbody>
+    <% poems.each do |poem| %>
+    <tr>
+      <td>
+        <%= link_to user_path(poem.user) do %>
+          <%= poem.user.name %>
+        <% end %>
+      </td>
+      <td>
+        <%= image_tag poem.user.get_profile_image(50,50) %>
+      </td>
+      <td><%= link_to poem.poem_start,poem %></td>
+      <td><%= poem.poem_middle %></td>
+      <td><%= poem.poem_end %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
