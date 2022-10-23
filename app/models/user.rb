@@ -25,4 +25,9 @@ class User < ApplicationRecord
     end
   end
   
+  #　退会したアカウントがログインできない制約をかける
+  def active_for_authentication?
+    super && (is_deleted == false)
+  end
+  
 end

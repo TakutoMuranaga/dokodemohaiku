@@ -13,11 +13,17 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    
+    resources :genres, only: [:index,:edit,:create,:update]
   end
 
   scope module: :public do
     root to: 'homes#top'
     resources :users, only: [:index, :edit, :update, :destroy, :show]
+    # 退会確認画面
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    # 論理削除用のルーティング
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :poems, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :poem_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]

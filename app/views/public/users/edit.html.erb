@@ -19,5 +19,8 @@
         <%= f.submit class: 'btn btn-secondary' %>
       </div>
     <% end %>
+    <%= link_to unsubscribe_path(current_user) do %>
+      退会
+    <% end %>
   </div>
 </div>
