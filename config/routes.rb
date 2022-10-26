@@ -13,13 +13,28 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
+    resources :poems, only: [:index, :show,]
   end
 
   scope module: :public do
     root to: 'homes#top'
-    resources :users, only: [:index, :edit, :update, :destroy, :show]
+    resources :users, only: [:index, :edit, :update, :destroy, :show] do
+      #ネストさせる
+      resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+    end
+    # 退会確認画面
+    get '/users/:id/unsubscribe' => 'users#unsubscribe', as: 'unsubscribe'
+    # 論理削除用のルーティング
+    patch '/users/:id/withdrawal' => 'users#withdrawal', as: 'withdrawal'
     resources :poems, only: [:new, :index, :show, :edit, :create, :destroy, :update] do
       resources :poem_comments, only: [:create, :destroy]
-    end  
+      resource :favorites, only: [:create, :destroy]
+    end
+    get "search" => "searches#search"
+    devise_scope :user do
+      post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
+    end
   end
 end
