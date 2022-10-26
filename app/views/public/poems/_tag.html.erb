@@ -1,0 +1,9 @@
+<%= form_tag poems_path, method: :get, class: 'boards__searchForm' do %>
+      <%= select_tag :tag_id,
+                     options_from_collection_for_select(Tag.all, :id, :name, params[:tag_id]),
+                     {
+                       prompt: '全てのタグを表示',
+                       onchange: 'submit(this.form);'
+                     }
+      %>
+    <% end %>

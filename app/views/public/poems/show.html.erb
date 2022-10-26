@@ -5,15 +5,18 @@
       <%= render 'public/users/info', user: @user %>
     </div>
     <div class='col-md-8 offset-md-1'>
-      <h2>俳句詳細</h2>
+      <h2>川柳詳細</h2>
       <table class='table'>
         <tr>
           <td>
             <%= link_to @user.name %>
           </td>
-          <td><%= @poem.poem_start %></td>
-          <td><%= @poem.poem_middle %></td>
-          <td><%= @poem.poem_end %></td>
+          <td><%= @poem.body %></td>
+          <td>
+            <% @poem.tags.each do |tag| %>
+              <span><%= tag.name %></span>
+            <% end %>
+          </td>
           <% if @poem.user == current_user %>
             <td><%= link_to 'Edit', edit_poem_path(@poem), class: "btn btn-sm btn-success" %></td>
             <td><%= link_to 'Destroy', @poem, method: :delete, class: "btn btn-sm btn-danger"%></td>

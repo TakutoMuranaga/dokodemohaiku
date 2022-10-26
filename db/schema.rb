@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_10_24_221719) do
+ActiveRecord::Schema.define(version: 2022_10_26_183614) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -59,13 +59,6 @@ ActiveRecord::Schema.define(version: 2022_10_24_221719) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "genres", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "name"
-    t.string "#<ActiveRecord::ConnectionAdapters::SQLite3::TableDefinition:0x00007f76dc6968d8>"
-  end
-
   create_table "poem_comments", force: :cascade do |t|
     t.text "comment"
     t.integer "user_id"
@@ -74,10 +67,17 @@ ActiveRecord::Schema.define(version: 2022_10_24_221719) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "poem_tags", force: :cascade do |t|
+    t.integer "poem_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["poem_id"], name: "index_poem_tags_on_poem_id"
+    t.index ["tag_id"], name: "index_poem_tags_on_tag_id"
+  end
+
   create_table "poems", force: :cascade do |t|
-    t.string "poem_start"
-    t.string "poem_middle"
-    t.string "poem_end"
+    t.string "body"
     t.integer "genre_id"
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
@@ -87,6 +87,12 @@ ActiveRecord::Schema.define(version: 2022_10_24_221719) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -108,4 +114,6 @@ ActiveRecord::Schema.define(version: 2022_10_24_221719) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "poem_tags", "poems"
+  add_foreign_key "poem_tags", "tags"
 end

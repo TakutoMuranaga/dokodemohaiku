@@ -13,8 +13,7 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-
-    resources :genres, only: [:index,:edit,:create,:update]
+    resources :poems, only: [:index, :show,]
   end
 
   scope module: :public do
@@ -33,6 +32,7 @@ Rails.application.routes.draw do
       resources :poem_comments, only: [:create, :destroy]
       resource :favorites, only: [:create, :destroy]
     end
+    get "search" => "searches#search"
     devise_scope :user do
       post 'users/guest_sign_in', to: 'sessions#guest_sign_in'
     end
