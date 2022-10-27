@@ -6,6 +6,7 @@ class Admin::PoemsController < ApplicationController
     if params[:tag]
       Tag.create(name: params[:tag])
     end
+    @tags = Tag.all
   end
 
 end

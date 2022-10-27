@@ -5,6 +5,9 @@
           <%= text_field_tag :tag %>
           <%= submit_tag 'タグを追加' %>
       <% end %>
+      <% @tags.each do |tag| %>
+        <span><%= tag.name %></span>
+      <% end %>
       <h2>川柳</h2>
       <%= render 'public/poems/index', poems: @poems %>
     </div>
