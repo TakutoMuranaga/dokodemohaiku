@@ -13,6 +13,7 @@ class Public::PoemsController < ApplicationController
   def index
     @poems = Poem.all
     @user = current_user
+    @poems = params[:tag_id].present? ? Tag.find(params[:tag_id]).poems : Poem.all
   end
 
   def create
@@ -44,7 +45,7 @@ class Public::PoemsController < ApplicationController
   private
 
   def poems_params
-    params.require(:poem).permit(:poem_start, :poem_middle, :poem_end)
+    params.require(:poem).permit(:body, tag_ids: [])
   end
 
 end

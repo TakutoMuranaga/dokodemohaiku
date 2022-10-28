@@ -1,0 +1,15 @@
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <div class='col-md-8 offset-md-1'>
+      <%= form_tag({controller:"poems",action:"index"}, method: :get) do %>
+          <%= text_field_tag :tag %>
+          <%= submit_tag 'タグを追加' %>
+      <% end %>
+      <% @tags.each do |tag| %>
+        <span><%= tag.name %></span>
+      <% end %>
+      <h2>川柳</h2>
+      <%= render 'public/poems/index', poems: @poems %>
+    </div>
+  </div>
+</div>

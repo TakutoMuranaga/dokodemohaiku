@@ -10,9 +10,12 @@
       <td>
         <%= image_tag poem.user.get_profile_image(50,50) %>
       </td>
-      <td><%= link_to poem.poem_start,poem %></td>
-      <td><%= poem.poem_middle %></td>
-      <td><%= poem.poem_end %></td>
+      <td><%= link_to poem.body,poem %></td>
+      <td>
+        <% poem.tags.each do |tag| %>
+          <span><%= tag.name %></span>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>
