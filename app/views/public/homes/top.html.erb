@@ -1,1 +1,21 @@
-<%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post %>
+<div class="container">
+  <div class="row">
+    <div class='mx-auto col-11 col-sm-10 col-lg-8 col-xl-6'>
+      <h1>どこでも川柳へようこそ !!</h1>
+      <p>このサイトは日常生活で感じたことを川柳にして共有するコミュニティサイトです。</p>
+      <p> 自分の川柳を残したい！面白い川柳を書く人をマークしておきたい方は新規登録へ！</p>
+      <p>とりあえずどんなサイトなのか試したい方はゲストログインへ！</p>
+      <div class="btn-wrapper col-10 mx-auto">
+        <div class="row">
+          <%= link_to 'ログイン',new_user_session_path, class: "btn btn-info btn-sm btn-block mb-3 sign_in" %>
+        </div>
+        <div class="row">
+          <%= link_to '新規登録',new_user_registration_path, class: "btn btn-success btn-sm btn-block sign_up" %>
+        </div><br>
+        <div class="row">
+          <%= link_to 'ゲストログイン',users_guest_sign_in_path, method: :post, class: "btn btn-secondary btn-sm btn-block sign_up" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
